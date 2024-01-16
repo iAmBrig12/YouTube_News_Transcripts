@@ -1,6 +1,7 @@
 from youtube_transcript_api import YouTubeTranscriptApi as ytt
 import pandas as pd
 import scrapetube
+from pytube import YouTube
 
 def text_from_transcript(transcript):
     txt = ''
@@ -9,7 +10,7 @@ def text_from_transcript(transcript):
     return txt
 
 
-yt_news_df = pd.DataFrame(columns=['video_id', 'title', 'source', 'description', 'text'])
+yt_news_df = pd.DataFrame(columns=['video_id', 'publish_date', 'title', 'source', 'description', 'text'])
 
 channel_ids = {
     'ABC News': 'UCBi2mrWuNuyYy4gbM6fU18Q',
@@ -31,25 +32,24 @@ for channel_name, channel_id in channel_ids.items():
 
         try:
             vid_transcript = ytt.get_transcript(vid_id)
+            yt_video = YouTube(f"https://www.youtube.com/watch?v={vid_id}")
         except:
             failures += 1
             continue
 
-        print(scrapetube.get_video_info(vid_id))
-        quit()
-
         vid_text = text_from_transcript(vid_transcript)
         vid_title = vid['title']['runs'][0]['text']
         vid_description = vid['descriptionSnippet']['runs'][0]['text']
+        vid_date = yt_video.publish_date
 
         vid_dict = {
             'video_id': vid_id,
+            'publish_date': vid_date,
             'title': vid_title,
-            'text': vid_text,
             'source': channel_name,
-            'description': vid_description
+            'description': vid_description,
+            'text': vid_text
         }
-
 
         yt_news_df = pd.concat([yt_news_df, pd.DataFrame([vid_dict])], ignore_index=True)
 
