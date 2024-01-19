@@ -30,9 +30,9 @@ channel_ids = {
 }
 
 for channel_name, channel_id in channel_ids.items():
-    print(f'Scraping {channel_name}')
-
     videos = scrapetube.get_channel(channel_id, sort_by='newest')
+
+    print(f'Scraping {channel_name}')
 
     vids_scraped = 0
     failures = 0
@@ -41,7 +41,6 @@ for channel_name, channel_id in channel_ids.items():
         vid_id = vid['videoId']
 
         try:
-            vid_transcript = ytt.get_transcript(vid_id)
             yt_video = YouTube(f"https://www.youtube.com/watch?v={vid_id}")
         except:
             failures += 1
@@ -50,6 +49,12 @@ for channel_name, channel_id in channel_ids.items():
         vid_date = yt_video.publish_date
         if vid_date < end_date:
             break
+
+        try:
+            vid_transcript = ytt.get_transcript(vid_id)
+        except:
+            failures += 1
+            continue
 
         vid_text = text_from_transcript(vid_transcript)
         vid_title = vid['title']['runs'][0]['text']
