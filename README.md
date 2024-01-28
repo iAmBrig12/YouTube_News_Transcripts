@@ -17,12 +17,12 @@ This is an exploratory data analysis of the scraped data. This includes some exa
 These example plots cover 2672 videos published from 2023-12-18 to 2024-01-18.
 
 
-![Alt Text](videos_published.png)
+![Alt Text](plots/videos_published.png)
 *This plot shows the distribution of videos published by each channel over the date range. This gives a feel for where the bulk of the news videos are coming from and who is publishing the most.*
 
 
-![Alt Text](US_videos.png)
+![Alt Text](plots/US_videos.png)
 *This plot shows the trend in the number of videos mentioning 'United States' over the date range. Plots like these can show trends in what countries are being talked about in the news.*
 
-![Alt text](top_five.png)
+![Alt text](plots/top_five.png)
 *This graph takes the top five most mentioned countries in the date range. Continuing on the idea from the previous figure, this can give insight into what countries are being talked about in the news.*
