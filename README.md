@@ -1,4 +1,4 @@
-#  YouTube Transcript Web Scraping :)
+#  YouTube Transcript Web Scraping 
 
 ## Description
 This project utilizes <a href="https://pypi.org/project/scrapetube/">scrapetube</a> and <a href="https://pytube.io/en/latest/">pytube</a> to scrape four YouTube chanels: <a href="https://www.youtube.com/@ABCNews">ABC News</a>, <a href="https://www.youtube.com/@CNN">CNN</a>, <a href="https://www.youtube.com/@BBCNews">BBC News</a>, and <a href="https://www.youtube.com/@FoxNews">Fox News</a>. Data collected by the scraper include video id, video publish date, video source channel, video description, and transcript. The script will scrape every video published between the current date and a date specified by the user. I plan into implement different NLP techniques with this dataset in the future. Future projects can include Named Entity Recognition (NER), Topic Modeling, etc. 
